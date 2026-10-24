@@ -569,6 +569,150 @@ body.story-open .hdr{visibility:hidden}
 .story__foot{display:flex;justify-content:center;margin-top:8px}
 
 /* ============================================================
+   Special requests, in the booking form
+   ============================================================ */
+.reqbox{margin-top:20px;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--ground)}
+.reqbox__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.reqbox__head h3{font-size:.95rem}
+.reqbox__head span{font-size:.75rem;color:var(--ink-3)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{
+  font-size:.78rem;padding:7px 13px;border-radius:100px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+  transition:border-color .2s,background-color .2s,color .2s;
+}
+.chip:hover{border-color:var(--clay);color:var(--clay)}
+.chip.is-on{background:var(--clay);border-color:var(--clay);color:var(--on-clay)}
+.reqbox textarea{
+  width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface);color:var(--ink);font-size:.94rem;resize:vertical;font-family:inherit;
+}
+.reqbox textarea:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-soft)}
+
+/* ============================================================
+   Booking confirmation screen
+   ============================================================ */
+.conf{display:none}
+body.on-confirmation .hdr,
+body.on-confirmation > main,
+body.on-confirmation .ftr{display:none}
+body.on-confirmation #confirmation{display:block}
+.confbar{
+  border-bottom:1px solid var(--line);background:var(--ground);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:0 var(--pad);height:76px;max-width:var(--maxw);margin:0 auto;
+}
+.confbar .brand__mark,.confbar .brand__name{color:var(--clay)}
+.confbar .brand__name{color:var(--ink)}
+.confbar__back{font-size:.88rem;font-weight:500;color:var(--ink-2)}
+.confbar__back:hover{color:var(--clay)}
+.confmain{padding-block:clamp(38px,5vw,72px)}
+.confhead{display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:62ch}
+.confhead__tick{
+  width:46px;height:46px;border-radius:100px;display:grid;place-items:center;
+  background:var(--clay-soft);color:var(--clay);margin-bottom:4px;
+}
+.confhead__tick svg{width:22px;height:22px}
+.confhead h1{font-size:clamp(1.85rem,3.4vw,2.8rem)}
+.confhead__sub{font-size:1rem;color:var(--ink-2);line-height:1.6}
+.confhead__sub strong{color:var(--ink);font-weight:600}
+.confgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(18px,2.2vw,28px);margin-top:clamp(28px,3.5vw,44px)}
+@media (max-width:860px){.confgrid{grid-template-columns:1fr}}
+.confcard{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:clamp(22px,2.4vw,32px);box-shadow:var(--shadow-sm);
+}
+.confcard h2{font-size:1.05rem;padding-bottom:14px;border-bottom:1px solid var(--line-2);margin-bottom:4px}
+.confdl{margin:0;display:flex;flex-direction:column}
+.confdl > div{display:flex;justify-content:space-between;gap:18px;padding:13px 0;border-bottom:1px solid var(--line-2)}
+.confdl > div:last-child{border-bottom:none}
+.confdl dt{font-size:.85rem;color:var(--ink-3);margin:0}
+.confdl dd{margin:0;font-size:.95rem;font-weight:600;text-align:right}
+.confreq{margin-top:18px;padding-top:16px;border-top:1px solid var(--line-2)}
+.confreq h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3);font-weight:500;margin-bottom:10px}
+.confreq ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.confreq li{font-size:.9rem;color:var(--ink-2);padding-left:18px;position:relative;line-height:1.5}
+.confreq li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:100px;background:var(--clay)}
+.pricelist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.pricelist li{display:flex;justify-content:space-between;gap:18px;padding:13px 0;border-bottom:1px solid var(--line-2);font-size:.92rem;color:var(--ink-2)}
+.pricelist li span:last-child{font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap}
+.pricelist li.is-free span:last-child{color:var(--ink-3)}
+.pricetotal{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding-top:18px}
+.pricetotal span{font-size:.95rem;font-weight:600}
+.pricetotal strong{font-size:1.5rem;font-weight:600;color:var(--oxide);font-variant-numeric:tabular-nums}
+.pricenote{margin-top:12px;font-size:.78rem;color:var(--ink-3);line-height:1.55}
+.confactions{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,3vw,38px)}
+.confedit{
+  margin-top:16px;padding:20px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface-2);
+}
+.confedit__row{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.confedit__row .field{min-width:170px}
+.confedit__row .field--grow{flex:1 1 280px}
+.confedit__note{margin-top:12px;font-size:.78rem;color:var(--ink-3)}
+.conftoast{margin-top:16px;font-size:.88rem;font-weight:500;color:var(--clay);min-height:1.3em}
+
+/* the way out stays open, but it is not the thing the eye lands on */
+.confcancel{margin-top:clamp(34px,4vw,54px);padding-top:22px;border-top:1px solid var(--line-2)}
+.confcancel button{
+  background:none;border:none;padding:0;cursor:pointer;
+  font-size:.82rem;color:var(--ink-3);text-decoration:none;
+  transition:color .2s;
+}
+.confcancel button:hover{color:var(--ink-2);text-decoration:underline}
+
+/* ============================================================
+   Cancellation flow
+   ============================================================ */
+.cxl{
+  padding:0;border:1px solid var(--line);border-radius:var(--radius-lg);
+  background:var(--surface);color:var(--ink);
+  width:min(640px,94vw);max-width:none;max-height:88vh;
+  overflow:hidden;box-shadow:var(--shadow-lg);display:none;
+}
+.cxl--sm{width:min(470px,94vw)}
+.cxl[open]{display:flex;flex-direction:column;animation:storyIn .28s cubic-bezier(.2,.7,.3,1) both}
+.cxl::backdrop{background:rgba(31,26,22,.58);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:backdropIn .28s ease both}
+@media (prefers-reduced-motion:reduce){.cxl[open],.cxl::backdrop{animation:none}}
+.cxl__bar{
+  flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px clamp(18px,3vw,28px);border-bottom:1px solid var(--line-2);
+}
+.cxl__body{padding:clamp(22px,3vw,32px);overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.cxl__body h2{font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.25}
+.cxl__sub{font-size:.9rem;color:var(--ink-2);line-height:1.6}
+.cxl__copy{font-size:.95rem;color:var(--ink-2);line-height:1.68}
+.cxl__reasons{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+.cxl__reasons button{
+  width:100%;text-align:left;cursor:pointer;
+  padding:15px 44px 15px 17px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--ground);color:var(--ink);font-size:.93rem;font-weight:500;position:relative;
+  transition:border-color .2s,background-color .2s,transform .2s;
+}
+.cxl__reasons button::after{
+  content:"";position:absolute;right:19px;top:50%;width:7px;height:7px;
+  border-right:1.5px solid var(--ink-3);border-bottom:1.5px solid var(--ink-3);
+  transform:translateY(-50%) rotate(-45deg);transition:border-color .2s;
+}
+.cxl__reasons button:hover{border-color:var(--clay);background:var(--clay-soft)}
+.cxl__reasons button:hover::after{border-color:var(--clay)}
+.cxl__other{margin-top:8px;padding-top:18px;border-top:1px solid var(--line-2);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.cxl__other label{font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.cxl__other textarea{
+  width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--ground);color:var(--ink);font-size:.92rem;font-family:inherit;resize:vertical;
+}
+.cxl__other textarea:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 3px var(--clay-soft)}
+.cxl__acts{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:8px}
+.cxl__acts .btn{width:100%;padding:1em 1.6em}
+.cxl__go{
+  background:none;border:none;padding:4px;cursor:pointer;
+  font-size:.8rem;color:var(--ink-3);transition:color .2s;
+}
+.cxl__go:hover{color:var(--ink-2);text-decoration:underline}
+body.cxl-open{overflow:hidden}
+
+/* ============================================================
    Newsletter
    ============================================================ */
 .news{
@@ -715,8 +859,8 @@ body.story-open .hdr{visibility:hidden}
     <div class="wrap hero__inner">
       <div class="hero__head">
         <span class="hero__place"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Fort Aguada Road · Candolim · North Goa</span></span>
-        <h1>Susegad, served <em>with a sea view.</em></h1>
-        <p class="hero__sub">A 32-room beachfront retreat three minutes from the tide — Portuguese-tiled verandahs, an infinity pool that runs into the horizon, and a Goan kitchen that knows your order by day two.</p>
+        <h1>Wake up on <em>Candolim Beach.</em></h1>
+        <p class="hero__sub">A 32-room beachfront hotel in North Goa, three minutes from the sand.</p>
         <div class="hero__btns">
           <a class="btn btn--primary" href="#book">Book Now</a>
           <a class="btn btn--ghost" href="#stays">Explore Stays</a>
@@ -1117,17 +1261,38 @@ body.story-open .hdr{visibility:hidden}
             <select id="rm" name="room">
               <option>Sea View Deluxe — ₹6,450</option>
               <option>Private Pool Villa — ₹11,900</option>
-              <option>Azulejo Wing heritage room</option>
-              <option>Garden Courtyard room</option>
-              <option>Rooftop Loft</option>
+              <option>Azulejo Wing heritage room — ₹7,800</option>
+              <option>Garden Courtyard room — ₹5,200</option>
+              <option>Rooftop Loft — ₹8,600</option>
             </select>
           </div>
-          <div class="field field--wide">
+          <div class="field">
+            <label for="nm">Name on the booking</label>
+            <input type="text" id="nm" name="name" placeholder="Your full name" required />
+          </div>
+          <div class="field">
             <label for="em">Email for the confirmation</label>
             <input type="email" id="em" name="email" placeholder="you@example.com" required />
           </div>
         </div>
-        <button class="btn btn--primary btn--full" type="submit">Check availability</button>
+
+        <div class="reqbox">
+          <div class="reqbox__head">
+            <h3>Special requests</h3>
+            <span>Optional — the front desk reads every one</span>
+          </div>
+          <div class="chips" id="reqchips">
+            <button class="chip" type="button" data-req="Early check-in if the room is ready">Early check-in</button>
+            <button class="chip" type="button" data-req="Ground-floor room, no stairs">Ground floor</button>
+            <button class="chip" type="button" data-req="A cot for an infant">Cot for an infant</button>
+            <button class="chip" type="button" data-req="Quiet side, away from the terrace bar">Quiet side</button>
+            <button class="chip" type="button" data-req="Airport pickup — flight details to follow">Airport pickup</button>
+            <button class="chip" type="button" data-req="Celebrating an anniversary">Anniversary</button>
+          </div>
+          <textarea id="reqtext" rows="3" placeholder="Anything else we should know — dietary needs, arrival time, accessibility."></textarea>
+        </div>
+
+        <button class="btn btn--primary btn--full" type="submit">Book now</button>
         <p class="bookmsg" id="bookmsg" role="status" aria-live="polite"></p>
         <p class="booknote"><svg aria-hidden="true"><use href="#i-info"/></svg><span>Rather talk to a person? Call the front desk on <strong>+91 832 248 0100</strong> — answered 24 hours, by someone standing in the lobby.</span></p>
       </form>
@@ -1304,6 +1469,156 @@ body.story-open .hdr{visibility:hidden}
   </dialog>
 </main>
 
+<!-- ===== booking confirmation (its own screen) ===== -->
+<div class="conf" id="confirmation">
+  <header class="confbar">
+    <a class="brand" href="#" id="backhome" aria-label="ZO Hotel, home">
+      <svg class="brand__mark" viewBox="0 0 48 48" role="img" aria-hidden="true">
+        <rect x="1.2" y="1.2" width="45.6" height="45.6" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M24 6.5l2.6 5.9 5.9 2.6-5.9 2.6L24 23.6l-2.6-6-5.9-2.6 5.9-2.6z" fill="currentColor" opacity=".55"/>
+        <path d="M14 27h20l-13.5 12H34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__txt">
+        <span class="brand__name">ZO HOTEL</span>
+        <span class="brand__sub">Candolim · Goa</span>
+      </span>
+    </a>
+    <a class="confbar__back" href="#" id="backhome2">&larr; Back to the hotel</a>
+  </header>
+
+  <main class="wrap confmain">
+    <div class="confhead">
+      <span class="confhead__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span>
+      <p class="eyebrow">Booking confirmed</p>
+      <h1 id="confTitle">You&rsquo;re booked.</h1>
+      <p class="confhead__sub">We&rsquo;ve sent the details to <strong id="confEmail">you</strong>. Your reference is <strong id="confRef">ZO&ndash;0000</strong>.</p>
+    </div>
+
+    <div class="confgrid">
+      <section class="confcard">
+        <h2>Your stay</h2>
+        <dl class="confdl">
+          <div><dt>Room</dt><dd id="dRoom">&mdash;</dd></div>
+          <div><dt>Guests</dt><dd id="dGuests">&mdash;</dd></div>
+          <div><dt>Check in</dt><dd id="dCi">&mdash;</dd></div>
+          <div><dt>Check out</dt><dd id="dCo">&mdash;</dd></div>
+          <div><dt>Nights</dt><dd id="dNights">&mdash;</dd></div>
+          <div><dt>Booked by</dt><dd id="dName">&mdash;</dd></div>
+        </dl>
+        <div class="confreq" id="confreqwrap" hidden>
+          <h3>Special requests</h3>
+          <ul id="dReq"></ul>
+        </div>
+      </section>
+
+      <section class="confcard">
+        <h2>Price breakdown</h2>
+        <ul class="pricelist" id="priceList"></ul>
+        <div class="pricetotal"><span>Total</span><strong id="dTotal">&mdash;</strong></div>
+        <p class="pricenote">Nothing is charged today. Your card is held and settled when you check out.</p>
+      </section>
+    </div>
+
+    <div class="confactions">
+      <button class="btn btn--ghost" type="button" data-edit="dates">Change dates</button>
+      <button class="btn btn--ghost" type="button" data-edit="room">Change room</button>
+      <button class="btn btn--ghost" type="button" data-edit="req">Add another request</button>
+      <button class="btn btn--ghost" type="button" data-edit="desk">Message the front desk</button>
+    </div>
+
+    <div class="confedit" id="editDates" hidden>
+      <div class="confedit__row">
+        <div class="field"><label for="eCi">New check in</label><input type="date" id="eCi" /></div>
+        <div class="field"><label for="eCo">New check out</label><input type="date" id="eCo" /></div>
+        <button class="btn btn--primary btn--sm" type="button" data-save="dates">Update dates</button>
+      </div>
+      <p class="confedit__note">Moving your dates is free and your rate moves with you.</p>
+    </div>
+
+    <div class="confedit" id="editRoom" hidden>
+      <div class="confedit__row">
+        <div class="field field--grow"><label for="eRoom">Room</label>
+          <select id="eRoom">
+            <option>Sea View Deluxe — ₹6,450</option>
+            <option>Private Pool Villa — ₹11,900</option>
+            <option>Azulejo Wing heritage room — ₹7,800</option>
+            <option>Garden Courtyard room — ₹5,200</option>
+            <option>Rooftop Loft — ₹8,600</option>
+          </select>
+        </div>
+        <button class="btn btn--primary btn--sm" type="button" data-save="room">Update room</button>
+      </div>
+      <p class="confedit__note">Every room includes breakfast for two, the airport car and all taxes.</p>
+    </div>
+
+    <div class="confedit" id="editReq" hidden>
+      <div class="confedit__row">
+        <div class="field field--grow"><label for="eReq">Add a request</label>
+          <input type="text" id="eReq" placeholder="A late breakfast, a ground-floor room, a cot&hellip;" />
+        </div>
+        <button class="btn btn--primary btn--sm" type="button" data-save="req">Add request</button>
+      </div>
+      <p class="confedit__note">Requests are passed to the front desk and confirmed on arrival.</p>
+    </div>
+
+    <div class="confedit" id="editDesk" hidden>
+      <div class="confedit__row">
+        <div class="field field--grow"><label for="eDesk">Message the front desk</label>
+          <input type="text" id="eDesk" placeholder="Arriving late, flight number, anything at all" />
+        </div>
+        <button class="btn btn--primary btn--sm" type="button" data-save="desk">Send message</button>
+      </div>
+      <p class="confedit__note">Answered 24 hours a day, by someone standing in the lobby.</p>
+    </div>
+
+    <p class="conftoast" id="conftoast" role="status" aria-live="polite"></p>
+
+    <p class="confcancel"><button type="button" id="cancelStart">Cancel booking</button></p>
+  </main>
+</div>
+
+<!-- ===== cancellation: reasons ===== -->
+<dialog class="cxl" id="cxlReasons" aria-labelledby="cxlRTitle">
+  <div class="cxl__bar">
+    <span class="eyebrow">Cancel booking</span>
+    <button class="storymodal__x" type="button" id="cxlRClose" aria-label="Close">&times;</button>
+  </div>
+  <div class="cxl__body">
+    <h2 id="cxlRTitle">Before you go &mdash; what&rsquo;s changed?</h2>
+    <p class="cxl__sub">Pick the closest one. Most of these we can sort out without you losing the room.</p>
+    <ul class="cxl__reasons" id="cxlList"></ul>
+    <div class="cxl__other">
+      <label for="cxlOther">Something else&hellip;</label>
+      <textarea id="cxlOther" rows="3" placeholder="Tell us in your own words"></textarea>
+      <button class="btn btn--ghost btn--sm" type="button" id="cxlOtherGo">Continue</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- ===== cancellation: the answer to that reason ===== -->
+<dialog class="cxl cxl--sm" id="cxlOffer" aria-labelledby="cxlOTitle">
+  <div class="cxl__body">
+    <p class="eyebrow" id="cxlOKicker"></p>
+    <h2 id="cxlOTitle"></h2>
+    <p class="cxl__copy" id="cxlOBody"></p>
+    <div class="cxl__acts">
+      <button class="btn btn--primary" type="button" id="cxlKeep">Keep my booking</button>
+      <button class="cxl__go" type="button" id="cxlGo">Continue to cancellation</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- ===== cancellation: done ===== -->
+<dialog class="cxl cxl--sm" id="cxlDone" aria-labelledby="cxlDTitle">
+  <div class="cxl__body">
+    <h2 id="cxlDTitle">Your booking is cancelled</h2>
+    <p class="cxl__copy">Reference <strong id="cxlDRef"></strong> has been released and nothing was charged. If this was a mistake, the front desk can usually get the room back &mdash; call <strong>+91 832 248 0100</strong>.</p>
+    <div class="cxl__acts">
+      <button class="btn btn--primary" type="button" id="cxlDoneBtn">Back to the hotel</button>
+    </div>
+  </div>
+</dialog>
+
 <!-- ===== footer ===== -->
 <footer class="ftr">
   <div class="wrap">
@@ -1462,37 +1777,317 @@ body.story-open .hdr{visibility:hidden}
     statIo.observe(stats);
   }
 
-  /* ---- booking form ---- */
+  /* ---- booking ---- */
   var form = document.getElementById("bookform");
   var msg = document.getElementById("bookmsg");
   var ci = document.getElementById("ci");
   var co = document.getElementById("co");
 
+  var RATES = {
+    "Sea View Deluxe": 6450,
+    "Private Pool Villa": 11900,
+    "Azulejo Wing heritage room": 7800,
+    "Garden Courtyard room": 5200,
+    "Rooftop Loft": 8600
+  };
+
+  var booking = { name:"", email:"", ci:"", co:"", guests:"", room:"", requests:[] };
+
   var fmt = function (v) {
     if (!v) return "";
     var d = new Date(v + "T00:00:00");
-    return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+    return d.toLocaleDateString("en-IN", { weekday:"short", day: "numeric", month: "short", year: "numeric" });
   };
+  var money = function (n) { return "₹" + n.toLocaleString("en-IN"); };
+  var nightsBetween = function (a, b) { return Math.round((new Date(b) - new Date(a)) / 86400000); };
+  var roomName = function (v) { return v.split(" — ")[0]; };
+  var addDays = function (v, n) {
+    var d = new Date(v + "T00:00:00");
+    d.setDate(d.getDate() + n);
+    return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  };
+
   ci.addEventListener("change", function () {
-    if (ci.value && (!co.value || co.value <= ci.value)) {
-      var next = new Date(ci.value + "T00:00:00");
-      next.setDate(next.getDate() + 3);
-      var mm = String(next.getMonth() + 1).padStart(2, "0");
-      var dd = String(next.getDate()).padStart(2, "0");
-      co.value = next.getFullYear() + "-" + mm + "-" + dd;
-    }
+    if (ci.value && (!co.value || co.value <= ci.value)) co.value = addDays(ci.value, 3);
     co.min = ci.value;
   });
 
+  /* special-request chips feed the same box the guest types into */
+  var chips = document.getElementById("reqchips");
+  var reqtext = document.getElementById("reqtext");
+  chips.addEventListener("click", function (e) {
+    var b = e.target.closest(".chip");
+    if (!b) return;
+    b.classList.toggle("is-on");
+  });
+  var pickedRequests = function () {
+    var out = [];
+    chips.querySelectorAll(".chip.is-on").forEach(function (b) { out.push(b.getAttribute("data-req")); });
+    var typed = reqtext.value.trim();
+    if (typed) out.push(typed);
+    return out;
+  };
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    var name = document.getElementById("nm").value.trim();
+    var email = document.getElementById("em").value.trim();
+    if (!name) { msg.textContent = "Add the name the booking should be under."; return; }
     if (!ci.value || !co.value) { msg.textContent = "Pick a check-in and check-out date to continue."; return; }
     if (co.value <= ci.value) { msg.textContent = "Check-out needs to be after check-in."; return; }
-    var email = document.getElementById("em").value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = "Add a valid email so we can send the confirmation."; return; }
-    var nights = Math.round((new Date(co.value) - new Date(ci.value)) / 86400000);
-    msg.textContent = fmt(ci.value) + " → " + fmt(co.value) + " · " + nights + (nights === 1 ? " night" : " nights") +
-      " · " + document.getElementById("rm").value.split(" — ")[0] + ". Connect ZO's booking engine to complete this reservation.";
+    msg.textContent = "";
+    booking.name = name;
+    booking.email = email;
+    booking.ci = ci.value;
+    booking.co = co.value;
+    booking.guests = document.getElementById("gu").value;
+    booking.room = roomName(document.getElementById("rm").value);
+    booking.requests = pickedRequests();
+    booking.ref = "ZO-" + String(Math.floor(Math.random() * 9000) + 1000) + String.fromCharCode(65 + Math.floor(Math.random() * 26)) + String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    openConfirmation();
+  });
+
+  /* ---- the confirmation screen ---- */
+  var confirmation = document.getElementById("confirmation");
+  var toast = document.getElementById("conftoast");
+  var toastTimer;
+
+  var say = function (t) {
+    toast.textContent = t;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.textContent = ""; }, 4000);
+  };
+
+  var renderBooking = function () {
+    var n = nightsBetween(booking.ci, booking.co);
+    var rate = RATES[booking.room] || 6450;
+
+    document.getElementById("confTitle").textContent = "You’re booked, " + booking.name.split(" ")[0] + ".";
+    document.getElementById("confEmail").textContent = booking.email;
+    document.getElementById("confRef").textContent = booking.ref;
+    document.getElementById("dRoom").textContent = booking.room;
+    document.getElementById("dGuests").textContent = booking.guests;
+    document.getElementById("dCi").textContent = fmt(booking.ci) + ", from 2pm";
+    document.getElementById("dCo").textContent = fmt(booking.co) + ", by 11am";
+    document.getElementById("dNights").textContent = n + (n === 1 ? " night" : " nights");
+    document.getElementById("dName").textContent = booking.name;
+
+    var reqWrap = document.getElementById("confreqwrap");
+    var reqList = document.getElementById("dReq");
+    reqList.innerHTML = "";
+    if (booking.requests.length) {
+      booking.requests.forEach(function (r) {
+        var li = document.createElement("li");
+        li.textContent = r;
+        reqList.appendChild(li);
+      });
+      reqWrap.hidden = false;
+    } else {
+      reqWrap.hidden = true;
+    }
+
+    var rows = [
+      [booking.room + " × " + n + (n === 1 ? " night" : " nights"), money(rate * n), false],
+      ["Breakfast for two", "Included", true],
+      ["Airport pickup, both ways", "Included", true],
+      ["Taxes and fees", "Included", true],
+      ["Resort fee", "None", true]
+    ];
+    var list = document.getElementById("priceList");
+    list.innerHTML = "";
+    rows.forEach(function (r) {
+      var li = document.createElement("li");
+      if (r[2]) li.className = "is-free";
+      var a = document.createElement("span"); a.textContent = r[0];
+      var b = document.createElement("span"); b.textContent = r[1];
+      li.appendChild(a); li.appendChild(b);
+      list.appendChild(li);
+    });
+    document.getElementById("dTotal").textContent = money(rate * n);
+
+    document.getElementById("eCi").value = booking.ci;
+    document.getElementById("eCo").value = booking.co;
+    document.getElementById("eRoom").value = booking.room + " — " + money(RATES[booking.room]);
+  };
+
+  var openConfirmation = function () {
+    renderBooking();
+    document.body.classList.add("on-confirmation");
+    window.scrollTo(0, 0);
+    try { history.pushState({ zo: "booking" }, "", "#/booking"); } catch (err) { /* data:/file: origin */ }
+  };
+
+  var closeConfirmation = function () {
+    document.body.classList.remove("on-confirmation");
+    try { history.pushState({}, "", location.pathname + location.search); } catch (err) { /* data:/file: origin */ }
+    var b = document.getElementById("book");
+    if (b) b.scrollIntoView({ block: "start", behavior: "auto" });
+  };
+
+  document.getElementById("backhome").addEventListener("click", function (e) { e.preventDefault(); closeConfirmation(); });
+  document.getElementById("backhome2").addEventListener("click", function (e) { e.preventDefault(); closeConfirmation(); });
+  window.addEventListener("popstate", function () {
+    if (location.hash !== "#/booking") document.body.classList.remove("on-confirmation");
+  });
+
+  /* ---- amending the booking ---- */
+  var panels = { dates: "editDates", room: "editRoom", req: "editReq", desk: "editDesk" };
+  var showPanel = function (key) {
+    Object.keys(panels).forEach(function (k) {
+      document.getElementById(panels[k]).hidden = (k !== key);
+    });
+  };
+  document.querySelectorAll("[data-edit]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-edit");
+      var el = document.getElementById(panels[k]);
+      var wasOpen = !el.hidden;
+      showPanel(wasOpen ? null : k);
+      if (!wasOpen) {
+        el.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+        var f = el.querySelector("input,select,textarea");
+        if (f) f.focus({ preventScroll: true });
+      }
+    });
+  });
+
+  document.querySelectorAll("[data-save]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-save");
+      if (k === "dates") {
+        var a = document.getElementById("eCi").value, z = document.getElementById("eCo").value;
+        if (!a || !z || z <= a) { say("Pick a check-out date after the check-in date."); return; }
+        booking.ci = a; booking.co = z;
+        renderBooking(); showPanel(null);
+        say("Dates updated — your rate stayed the same.");
+      } else if (k === "room") {
+        booking.room = roomName(document.getElementById("eRoom").value);
+        renderBooking(); showPanel(null);
+        say("Room updated to the " + booking.room + ".");
+      } else if (k === "req") {
+        var t = document.getElementById("eReq").value.trim();
+        if (!t) { say("Type the request first."); return; }
+        booking.requests.push(t);
+        document.getElementById("eReq").value = "";
+        renderBooking(); showPanel(null);
+        say("Request added and passed to the front desk.");
+      } else if (k === "desk") {
+        var m = document.getElementById("eDesk").value.trim();
+        if (!m) { say("Type your message first."); return; }
+        document.getElementById("eDesk").value = "";
+        showPanel(null);
+        say("Message sent — the front desk replies within four hours.");
+      }
+    });
+  });
+
+  /* ---- cancellation ----
+     The reasons below come from what the research actually shows drives hotel
+     cancellations: rate-shopping after booking, changed dates, speculative
+     holds made because cancellation is free, trips falling through, budget,
+     and finding a property that suits better. Each one gets the answer that
+     genuinely applies to it. Cancelling stays available throughout. */
+  var REASONS = [
+    { id: "price",
+      label: "I’ve found a better price somewhere else",
+      kicker: "Best rate, guaranteed",
+      title: "Send it to us and we’ll beat it.",
+      body: "Booking direct is the lowest rate we’re allowed to publish. If you’ve found the same room cheaper, mail the link to the front desk within 24 hours — we’ll match that price and take another 10% off it." },
+    { id: "dates",
+      label: "My dates have changed",
+      kicker: "Moving is free",
+      title: "Keep the room, move the dates.",
+      body: "You can shift this booking to any open date at the same rate, with no fee and no re-pricing. It takes a few seconds and you keep the airport car, the breakfast and the supper that came with it." },
+    { id: "unsure",
+      label: "I’m not certain the trip is happening yet",
+      kicker: "Nothing is charged",
+      title: "Holding it costs you nothing.",
+      body: "Your card is held, not billed, and you can cancel free up to 24 hours before check-in. Keeping the room holds today’s rate while you decide — letting it go means paying whatever the rate is when you come back." },
+    { id: "trip",
+      label: "The trip is off — something came up",
+      kicker: "We’ll hold it for you",
+      title: "Keep it as credit for twelve months.",
+      body: "Rather than lose the room entirely, we can park the booking and the rate as an open credit for a year. Reply to your confirmation email and the front desk will set it up the same day." },
+    { id: "cost",
+      label: "It costs more than I budgeted for",
+      kicker: "Nothing more to pay",
+      title: "That total is the whole total.",
+      body: "Breakfast for two, every tax and the airport car are already inside it. There is no resort fee and nothing is added at checkout. If it’s still over budget, a Garden Courtyard room keeps every one of those inclusions at ₹5,200 a night." },
+    { id: "elsewhere",
+      label: "I’ve found somewhere that suits me better",
+      kicker: "Thirty-two rooms, five kinds",
+      title: "We probably have the room you’re after.",
+      body: "Sea-facing, garden courtyard, rooftop loft, or a villa with its own plunge pool. If it’s the room that’s wrong rather than the hotel, switching takes a second and your rate comes with you." }
+  ];
+  var OTHER = {
+    kicker: "Tell the front desk",
+    title: "Give us a chance to put it right.",
+    body: "Reshma reads every one of these herself. If there’s something we can fix before you arrive — or something we’ve already got wrong — we would much rather hear it and sort it than lose you."
+  };
+
+  var dReasons = document.getElementById("cxlReasons");
+  var dOffer = document.getElementById("cxlOffer");
+  var dDone = document.getElementById("cxlDone");
+
+  var openDlg = function (d) {
+    if (typeof d.showModal === "function") { if (!d.open) d.showModal(); }
+    else d.setAttribute("open", "");
+    document.body.classList.add("cxl-open");
+  };
+  var closeDlg = function (d) {
+    if (typeof d.close === "function") { if (d.open) d.close(); }
+    else d.removeAttribute("open");
+    if (!dReasons.open && !dOffer.open && !dDone.open) document.body.classList.remove("cxl-open");
+  };
+  [dReasons, dOffer, dDone].forEach(function (d) {
+    d.addEventListener("close", function () {
+      if (!dReasons.open && !dOffer.open && !dDone.open) document.body.classList.remove("cxl-open");
+    });
+  });
+
+  var list = document.getElementById("cxlList");
+  REASONS.forEach(function (r) {
+    var li = document.createElement("li");
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = r.label;
+    b.addEventListener("click", function () { showOffer(r); });
+    li.appendChild(b);
+    list.appendChild(li);
+  });
+
+  var showOffer = function (r) {
+    document.getElementById("cxlOKicker").textContent = r.kicker;
+    document.getElementById("cxlOTitle").textContent = r.title;
+    document.getElementById("cxlOBody").textContent = r.body;
+    closeDlg(dReasons);
+    openDlg(dOffer);
+  };
+
+  document.getElementById("cancelStart").addEventListener("click", function () {
+    document.getElementById("cxlOther").value = "";
+    openDlg(dReasons);
+  });
+  document.getElementById("cxlRClose").addEventListener("click", function () { closeDlg(dReasons); });
+  document.getElementById("cxlOtherGo").addEventListener("click", function () {
+    showOffer(OTHER);
+  });
+  document.getElementById("cxlKeep").addEventListener("click", function () {
+    closeDlg(dOffer);
+    say("Good — your booking is unchanged. See you in Candolim.");
+  });
+  document.getElementById("cxlGo").addEventListener("click", function () {
+    document.getElementById("cxlDRef").textContent = booking.ref || "—";
+    closeDlg(dOffer);
+    openDlg(dDone);
+  });
+  document.getElementById("cxlDoneBtn").addEventListener("click", function () {
+    closeDlg(dDone);
+    closeConfirmation();
+  });
+  [dReasons, dOffer, dDone].forEach(function (d) {
+    d.addEventListener("click", function (e) { if (e.target === d) closeDlg(d); });
   });
 
   /* ---- the journal: hidden until the Blog nav item is used ---- */
@@ -1591,7 +2186,7 @@ body.story-open .hdr{visibility:hidden}
     var v = document.getElementById("newsemail").value.trim();
     var out = document.getElementById("newsmsg");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { out.textContent = "That email doesn't look right — try again."; return; }
-    out.textContent = "Added. Connect your mailing list to start sending.";
+    out.textContent = "You\u2019re on the list \u2014 we\u2019ll write when the monsoon rates open.";
     nf.reset();
   });
 })();

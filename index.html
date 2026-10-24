@@ -329,12 +329,19 @@ section[id]{scroll-margin-top:88px}
 .room__body{padding:26px clamp(20px,2.4vw,30px) 28px;display:flex;flex-direction:column;gap:18px;flex:1}
 .room__top{display:flex;flex-direction:column;gap:8px}
 .room__one{font-size:.98rem;line-height:1.5;color:var(--ink-2)}
-.room__specs{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
-.room__specs li{
-  font-size:.78rem;color:var(--ink-2);
-  background:var(--surface-2);border:1px solid var(--line-2);
-  padding:5px 10px;border-radius:100px;
+.roomspec{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.roomspec li{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:11px 0;border-bottom:1px solid var(--line-2);
+  font-size:.9rem;color:var(--ink-2);line-height:1.35;
 }
+.roomspec li:last-child{border-bottom:none}
+.roomspec b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.roomspec__mark{width:21px;height:21px;flex:none;display:grid;place-items:center;border-radius:100px}
+.roomspec .is-yes .roomspec__mark{background:var(--clay-soft);color:var(--clay)}
+.roomspec .is-yes svg{width:12px;height:12px}
+.roomspec .is-no{color:var(--ink-3)}
+.roomspec .is-no .roomspec__mark::before{content:"";width:11px;height:1.5px;border-radius:2px;background:var(--line)}
 .room__foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:6px;border-top:1px solid var(--line-2)}
 .room__price{display:flex;flex-direction:column;gap:2px;padding-top:16px}
 .room__price .was{font-weight:500;font-size:.78rem;color:var(--ink-3);text-decoration:line-through}
@@ -986,8 +993,16 @@ body.cxl-open{overflow:hidden}
               <h3>Sea View Deluxe</h3>
               <p class="room__one">A high balcony, a slow morning, and the tide doing all the talking.</p>
             </div>
-            <ul class="room__specs">
-              <li>34 m²</li><li>King bed</li><li>Private balcony</li><li>Sleeps 2 + 1</li><li>Breakfast for two</li>
+            <ul class="roomspec">
+              <li class="roomspec__val"><span>Floor area</span><b>34 m&sup2;</b></li>
+              <li class="roomspec__val"><span>Sleeps</span><b>2 + 1</b></li>
+              <li class="roomspec__val"><span>Bed</span><b>King</b></li>
+              <li class="is-yes"><span>Sea view from the bed</span><span class="roomspec__mark" role="img" aria-label="Included"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span></li>
+              <li class="is-yes"><span>Private balcony</span><span class="roomspec__mark" role="img" aria-label="Included"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span></li>
+              <li class="is-no"><span>Private plunge pool</span><span class="roomspec__mark" role="img" aria-label="Not in this room"></span></li>
+              <li class="is-no"><span>Outdoor shower, walled garden</span><span class="roomspec__mark" role="img" aria-label="Not in this room"></span></li>
+              <li class="is-yes"><span>Breakfast for two</span><span class="roomspec__mark" role="img" aria-label="Included"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span></li>
+              <li class="is-yes"><span>Airport pickup, both ways</span><span class="roomspec__mark" role="img" aria-label="Included"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span></li>
             </ul>
             <div class="room__foot">
               <div class="room__price">
@@ -1012,8 +1027,16 @@ body.cxl-open{overflow:hidden}
               <h3>Private Pool Villa</h3>
               <p class="room__one">Your own plunge pool, an outdoor shower, and a gate you never have to open.</p>
             </div>
-            <ul class="room__specs">
-              <li>68 m²</li><li>King + daybed</li><li>Plunge pool</li><li>Sleeps 3 + 1</li><li>In-villa breakfast</li>
+            <ul class="roomspec">
+              <li class="roomspec__val"><span>Floor area</span><b>68 m&sup2;</b></li>
+              <li class="roomspec__val"><span>Sleeps</span><b>3 + 1</b></li>
+              <li class="roomspec__val"><span>Bed</span><b>King + daybed</b></li>
+              <li class="is-no"><span>Sea view from the bed</span><span class="roomspec__mark" role="img" aria-label="Not in this room"></span></li>
+              <li class="is-no"><span>Private balcony</span><span class="roomspec__mark" role="img" aria-label="Not in this room"></span></li>
+              <li class="is-yes"><span>Private plunge pool</span><span class="roomspec__mark" role="img" aria-label="Included"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span></li>
+              <li class="is-yes"><span>Outdoor shower, walled garden</span><span class="roomspec__mark" role="img" aria-label="Included"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span></li>
+              <li class="is-yes"><span>Breakfast for two</span><span class="roomspec__mark" role="img" aria-label="Included"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span></li>
+              <li class="is-yes"><span>Airport pickup, both ways</span><span class="roomspec__mark" role="img" aria-label="Included"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span></li>
             </ul>
             <div class="room__foot">
               <div class="room__price">
@@ -1053,7 +1076,7 @@ body.cxl-open{overflow:hidden}
         <div class="feat">
           <svg class="feat__ico" aria-hidden="true"><use href="#i-dish"/></svg>
           <h3>A kitchen with no freezer</h3>
-          <p>Chef Reshma buys at the Candolim market at 6am. Xacuti, ambot-tik, rechado — cooked the way her grandmother wrote it down.</p>
+          <p>Our head chef buys at the Candolim market at 6am. Xacuti, ambot-tik, rechado — cooked to recipes this kitchen has kept for three generations.</p>
         </div>
         <div class="feat">
           <svg class="feat__ico" aria-hidden="true"><use href="#i-shield"/></svg>
@@ -1084,7 +1107,7 @@ body.cxl-open{overflow:hidden}
         <p class="lede">Candolim has plenty of hotels with a pool and a view. These are the reasons people book <em>this</em> one.</p>
         <div class="spec__note">
           <p>“We don't sell rooms. We sell the fortnight you'll talk about for a year.”</p>
-          <small>Reshma &amp; Ivan D'Souza · Owners since 2011</small>
+          <small>The D'Souza family · Owners since 2011</small>
         </div>
       </div>
 
@@ -1194,7 +1217,7 @@ body.cxl-open{overflow:hidden}
             <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
           </div>
           <p class="rev__q">“Worked mornings, swam afternoons, no compromise.”</p>
-          <p class="rev__b">The villa Wi-Fi held four hours of video calls without a stutter, which I did not expect in Goa. Plunge pool ten steps from the desk. Reshma's Saturday supper was the best meal of the trip and it was included.</p>
+          <p class="rev__b">The villa Wi-Fi held four hours of video calls without a stutter, which I did not expect in Goa. Plunge pool ten steps from the desk. The Saturday chef's table was the best meal of the trip and it was included.</p>
           <div class="rev__who">
             <span class="rev__av" aria-hidden="true">MW</span>
             <div><strong>Marcus Weber</strong><small>Berlin · Private Pool Villa · Jan 2026</small></div>
@@ -1388,7 +1411,7 @@ body.cxl-open{overflow:hidden}
           <div class="post__body">
             <span class="post__meta">Getting around · 4 min read</span>
             <h3>The 6 a.m. fish market run, explained</h3>
-            <p>Chef Reshma takes two guests with her every Tuesday. Here's what she buys, what she refuses, and how to tell.</p>
+            <p>Our head chef takes two guests along every Tuesday. Here's what gets bought, what gets turned away, and how to tell the difference.</p>
             <span class="post__more">Read the story →</span>
           </div>
         </article>
@@ -2023,7 +2046,7 @@ body.cxl-open{overflow:hidden}
   var OTHER = {
     kicker: "Tell the front desk",
     title: "Give us a chance to put it right.",
-    body: "Reshma reads every one of these herself. If there’s something we can fix before you arrive — or something we’ve already got wrong — we would much rather hear it and sort it than lose you."
+    body: "The general manager reads every one of these. If there’s something we can fix before you arrive — or something we’ve already got wrong — we would much rather hear it and sort it than lose you."
   };
 
   var dReasons = document.getElementById("cxlReasons");

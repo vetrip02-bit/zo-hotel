@@ -24,3 +24,4 @@ The following content is placeholder and must be replaced with real details:
 - The Goa Tourism registration number in the footer bar
 - The guest reviews and the review counts
 - The booking form, which validates dates but is not connected to a booking engine
+- The “Pay now” control is a non-collecting prototype until a payment provider is connected

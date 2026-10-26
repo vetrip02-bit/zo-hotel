@@ -686,7 +686,11 @@ body.on-confirmation #confirmation{display:block}
 .pricetotal span{font-size:.95rem;font-weight:600}
 .pricetotal strong{font-size:1.5rem;font-weight:600;color:var(--oxide);font-variant-numeric:tabular-nums}
 .pricenote{margin-top:12px;font-size:.78rem;color:var(--ink-3);line-height:1.55}
-.confactions{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,3vw,38px)}
+.confpay{width:100%;margin-top:18px}
+.confmanage{margin-top:clamp(28px,3.5vw,44px)}
+.confsectionhead h2{font-size:1.05rem}
+.confsectionhead p{margin-top:5px;font-size:.84rem;color:var(--ink-3);line-height:1.55}
+.confactions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .confedit{
   margin-top:16px;padding:20px;border:1px solid var(--line);border-radius:var(--radius);
   background:var(--surface-2);
@@ -697,8 +701,20 @@ body.on-confirmation #confirmation{display:block}
 .confedit__note{margin-top:12px;font-size:.78rem;color:var(--ink-3)}
 .conftoast{margin-top:16px;font-size:.88rem;font-weight:500;color:var(--clay);min-height:1.3em}
 
-/* the way out stays open, but it is not the thing the eye lands on */
-.confcancel{display:flex;flex-wrap:wrap;margin-top:14px}
+/* Keep the destructive path available, but visually separate it from the
+   everyday stay-management actions above. */
+.confcancel{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  margin-top:clamp(38px,5vw,60px);padding-top:clamp(24px,3vw,32px);
+  border-top:1px solid var(--line);
+}
+.confcancel__copy{max-width:54ch}
+.confcancel__copy h2{font-size:1.05rem}
+.confcancel__copy p{margin-top:5px;font-size:.84rem;color:var(--ink-3);line-height:1.55}
+.confcancel .btn{flex:none}
+@media (max-width:620px){
+  .confcancel{align-items:flex-start;flex-direction:column;gap:16px}
+}
 
 /* ============================================================
    Cancellation flow
@@ -1550,19 +1566,22 @@ body.cxl-open{overflow:hidden}
         <ul class="pricelist" id="priceList"></ul>
         <div class="pricetotal"><span>Total</span><strong id="dTotal">&mdash;</strong></div>
         <p class="pricenote">Nothing is charged today. Your card is held and settled when you check out.</p>
+        <button class="btn btn--primary confpay" type="button" id="payNow">Pay now</button>
       </section>
     </div>
 
-    <div class="confactions">
-      <button class="btn btn--ghost" type="button" data-edit="dates">Change dates</button>
-      <button class="btn btn--ghost" type="button" data-edit="room">Change room</button>
-      <button class="btn btn--ghost" type="button" data-edit="req">Add another request</button>
-      <button class="btn btn--ghost" type="button" data-edit="desk">Message the front desk</button>
-    </div>
-
-    <div class="confcancel">
-      <button class="btn btn--danger" type="button" id="cancelStart">Cancel this booking</button>
-    </div>
+    <section class="confmanage" aria-labelledby="confManageTitle">
+      <div class="confsectionhead">
+        <h2 id="confManageTitle">Manage your stay</h2>
+        <p>Make a change or send the hotel a request.</p>
+      </div>
+      <div class="confactions">
+        <button class="btn btn--ghost" type="button" data-edit="dates">Change dates</button>
+        <button class="btn btn--ghost" type="button" data-edit="room">Change room</button>
+        <button class="btn btn--ghost" type="button" data-edit="req">Add another request</button>
+        <button class="btn btn--ghost" type="button" data-edit="desk">Message the front desk</button>
+      </div>
+    </section>
 
     <div class="confedit" id="editDates" hidden>
       <div class="confedit__row">
@@ -1611,8 +1630,31 @@ body.cxl-open{overflow:hidden}
 
     <p class="conftoast" id="conftoast" role="status" aria-live="polite"></p>
 
+    <section class="confcancel" aria-labelledby="confCancelTitle">
+      <div class="confcancel__copy">
+        <h2 id="confCancelTitle">Cancel your stay</h2>
+        <p>Review your cancellation options and any applicable terms before confirming.</p>
+      </div>
+      <button class="btn btn--danger" type="button" id="cancelStart">Cancel this booking</button>
+    </section>
+
   </main>
 </div>
+
+<!-- ===== payment information ===== -->
+<dialog class="cxl cxl--sm" id="payDialog" aria-labelledby="payTitle">
+  <div class="cxl__bar">
+    <span class="eyebrow">Payment</span>
+    <button class="storymodal__x" type="button" id="payClose" aria-label="Close">&times;</button>
+  </div>
+  <div class="cxl__body">
+    <h2 id="payTitle">Online payment is not connected yet.</h2>
+    <p class="cxl__copy">This demo does not collect card details. Your booking is still confirmed, nothing has been charged, and you can settle the total when you check out.</p>
+    <div class="cxl__acts">
+      <button class="btn btn--primary" type="button" id="payBack">Back to booking</button>
+    </div>
+  </div>
+</dialog>
 
 <!-- ===== cancellation: reasons ===== -->
 <dialog class="cxl" id="cxlReasons" aria-labelledby="cxlRTitle">
@@ -2056,6 +2098,7 @@ body.cxl-open{overflow:hidden}
     body: "The general manager reads every one of these. If there’s something we can fix before you arrive — or something we’ve already got wrong — we would much rather hear it and sort it than lose you."
   };
 
+  var dPay = document.getElementById("payDialog");
   var dReasons = document.getElementById("cxlReasons");
   var dOffer = document.getElementById("cxlOffer");
   var dDone = document.getElementById("cxlDone");
@@ -2068,18 +2111,25 @@ body.cxl-open{overflow:hidden}
   var closeDlg = function (d) {
     if (typeof d.close === "function") { if (d.open) d.close(); }
     else d.removeAttribute("open");
-    if (!dReasons.open && !dOffer.open && !dDone.open) document.body.classList.remove("cxl-open");
+    if (!dPay.open && !dReasons.open && !dOffer.open && !dDone.open) document.body.classList.remove("cxl-open");
   };
+  var payTrigger = document.getElementById("payNow");
   var cancelTrigger = document.getElementById("cancelStart");
-  [dReasons, dOffer, dDone].forEach(function (d) {
+  [dPay, dReasons, dOffer, dDone].forEach(function (d) {
     d.addEventListener("close", function () {
       /* the close event is queued, so by the time it runs the next dialog in the
          flow is already open -- only hand focus back when the flow really ended */
-      if (dReasons.open || dOffer.open || dDone.open) return;
+      if (dPay.open || dReasons.open || dOffer.open || dDone.open) return;
       document.body.classList.remove("cxl-open");
-      if (document.body.classList.contains("on-confirmation")) cancelTrigger.focus();
+      if (document.body.classList.contains("on-confirmation")) {
+        (d === dPay ? payTrigger : cancelTrigger).focus();
+      }
     });
   });
+
+  payTrigger.addEventListener("click", function () { openDlg(dPay); });
+  document.getElementById("payClose").addEventListener("click", function () { closeDlg(dPay); });
+  document.getElementById("payBack").addEventListener("click", function () { closeDlg(dPay); });
 
   var list = document.getElementById("cxlList");
   REASONS.forEach(function (r) {
@@ -2121,7 +2171,7 @@ body.cxl-open{overflow:hidden}
     closeDlg(dDone);
     closeConfirmation();
   });
-  [dReasons, dOffer, dDone].forEach(function (d) {
+  [dPay, dReasons, dOffer, dDone].forEach(function (d) {
     d.addEventListener("click", function (e) { if (e.target === d) closeDlg(d); });
   });
 

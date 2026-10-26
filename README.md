@@ -7,6 +7,8 @@ Single-page website for ZO Hotel, a beachfront hotel in Candolim, North Goa.
 - `index.html` — the complete site. All photographs are embedded as data URIs,
   so the page runs standalone with no other files and no build step.
 - `*.jpg` — the source photographs, kept here so the page can be re-edited.
+- `logo-cream.png` / `logo-dark.png` — the logo, cream for dark backgrounds and
+  dark for light ones. Both are embedded in `index.html` as CSS variables.
 
 ## Built with
 

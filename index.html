@@ -1662,8 +1662,8 @@ body.cxl-open{overflow:hidden}
     <p class="cxl__sub">Pick the closest one. Most of these we can sort out without you losing the room.</p>
     <ul class="cxl__reasons" id="cxlList"></ul>
     <div class="cxl__other">
-      <label for="cxlOther">Something else&hellip;</label>
-      <textarea id="cxlOther" rows="3" placeholder="Tell us in your own words"></textarea>
+      <label for="cxlOther">Anything else we should know?</label>
+      <textarea id="cxlOther" rows="3" placeholder="Optional — tell us in your own words"></textarea>
       <button class="btn btn--ghost btn--sm" type="button" id="cxlOtherGo">Continue</button>
     </div>
   </div>
@@ -2057,43 +2057,40 @@ body.cxl-open{overflow:hidden}
      genuinely applies to it. Cancelling stays available throughout. */
   var REASONS = [
     { id: "price",
-      label: "I’ve found a better price somewhere else",
-      kicker: "Best rate, guaranteed",
-      title: "Send it to us and we’ll beat it.",
-      body: "Booking direct is the lowest rate we’re allowed to publish. If you’ve found the same room cheaper, mail the link to the front desk within 24 hours — we’ll match that price and take another 10% off it." },
-    { id: "dates",
-      label: "My dates have changed",
+      label: "I found a lower price",
+      kicker: "Compare the whole stay",
+      title: "Compare the stay, not the nightly rate.",
+      body: "Breakfast for every guest, the airport car both ways and every tax are already inside your total — there is no resort fee and nothing is added at checkout. Check whether the cheaper rate includes the same. If it does, send us the link within 24 hours and we will match it and take another 10% off." },
+    { id: "plans",
+      label: "My plans changed",
       kicker: "Moving is free",
-      title: "Keep the room, move the dates.",
-      body: "You can shift this booking to any open date at the same rate, with no fee and no re-pricing. It takes a few seconds and you keep the airport car, the breakfast and the supper that came with it." },
-    { id: "unsure",
-      label: "I’m not certain the trip is happening yet",
-      kicker: "Nothing is charged",
-      title: "Holding it costs you nothing.",
-      body: "Your card is held, not billed, and you can cancel free up to 24 hours before check-in. Keeping the room holds today’s rate while you decide — letting it go means paying whatever the rate is when you come back." },
-    { id: "trip",
-      label: "The trip is off — something came up",
-      kicker: "We’ll hold it for you",
-      title: "Keep it as credit for twelve months.",
-      body: "Rather than lose the room entirely, we can park the booking and the rate as an open credit for a year. Reply to your confirmation email and the front desk will set it up the same day." },
-    { id: "cost",
-      label: "It costs more than I budgeted for",
-      kicker: "Nothing more to pay",
-      title: "That total is the whole total.",
-      body: "Breakfast, every tax and the airport car are already inside it. There is no resort fee and nothing is added at checkout. If it’s still over budget, a Garden Courtyard room keeps every one of those inclusions at ₹5,200 a night." },
-    { id: "elsewhere",
-      label: "I’ve found somewhere that suits me better",
-      kicker: "Thirty-two rooms, five kinds",
-      title: "We probably have the room you’re after.",
-      body: "Sea-facing, garden courtyard, rooftop loft, or a villa with its own plunge pool. If it’s the room that’s wrong rather than the hotel, switching takes a second and your rate comes with you." }
+      title: "Your plans moved. Your stay can move too.",
+      body: "Shift this booking to any open date at the same rate, with no fee and no re-pricing. If you do not have new dates yet, we can hold the whole thing as credit for twelve months instead." },
+    { id: "weather",
+      label: "I’m worried about the weather",
+      kicker: "The quiet season",
+      title: "Goa in the rain has its own glow.",
+      body: "Monsoon is when the hills go green, the pool is heated and the kitchen leans into it. Read the monsoon edition in our journal before you decide. And every monsoon booking can be moved once, free, right up to the day of arrival." },
+    { id: "travel",
+      label: "My flight or travel is uncertain",
+      kicker: "We wait for you",
+      title: "Land whenever you land. We will be ready.",
+      body: "Send your flight number and the driver tracks it — the airport car waits however late you get in, from either Dabolim or Mopa. Reception never closes, so there is no arrival time you can miss." },
+    { id: "location",
+      label: "The location isn’t right for my trip",
+      kicker: "Three minutes to the sand",
+      title: "Close to everything, away from the noise.",
+      body: "The beach is 220 metres down a lane with no road to cross. Fort Aguada is twelve minutes on foot and the Saturday market eight — and we sit one lane back from the strip, so the nights stay quiet. If it is the room rather than the place, we have five kinds." },
+    { id: "other",
+      label: "Something else",
+      kicker: "Tell the front desk",
+      title: "Tell us what would help.",
+      body: "Send it straight to the Goa guest team and we will walk you through the options on your booking. If there is something we can put right before you arrive, we would far rather do that than lose you." }
   ];
-  var OTHER = {
-    kicker: "Tell the front desk",
-    title: "Give us a chance to put it right.",
-    body: "The general manager reads every one of these. If there’s something we can fix before you arrive — or something we’ve already got wrong — we would much rather hear it and sort it than lose you."
-  };
+  var OTHER = REASONS[REASONS.length - 1];
 
   var dPay = document.getElementById("payDialog");
+
   var dReasons = document.getElementById("cxlReasons");
   var dOffer = document.getElementById("cxlOffer");
   var dDone = document.getElementById("cxlDone");

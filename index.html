@@ -459,6 +459,12 @@ section[id]{scroll-margin-top:88px}
    FAQ
    ============================================================ */
 .faq{max-width:1100px;margin:clamp(30px,4vw,46px) auto 0}
+.faqgroup{margin-top:clamp(32px,3.6vw,48px)}
+.faqgroup:first-child{margin-top:0}
+.faqgroup__h{
+  font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--clay);margin-bottom:4px;
+}
 .faq details{border-bottom:1px solid var(--line);background:transparent}
 .faq details:first-of-type{border-top:1px solid var(--line)}
 .faq summary{
@@ -1352,31 +1358,90 @@ body.cxl-open{overflow:hidden}
       </div>
 
       <div class="faq rv">
-        <details open>
-          <summary>What are the check-in and check-out times?</summary>
-          <p class="ans">From 2pm, out by 11am. Arrive early and use the pool and showers while we make the room up. Bags held free either side. Late checkout to 4pm when we can.</p>
-        </details>
-        <details>
-          <summary>Is the airport transfer really included?</summary>
-          <p class="ans">Yes — one pickup and one drop per booking, from Dabolim or Mopa. Send your flight number 12 hours ahead. Extra trips are ₹1,400 to ₹1,600.</p>
-        </details>
-        <details>
-          <summary>How far is the beach, honestly?</summary>
-          <p class="ans">Three minutes on foot. 220 metres down a lane, no road to cross. Towels and a cooler by the gate, and loungers held for guests until 4pm.</p>
-        </details>
-        <details>
-          <summary>What's the cancellation policy?</summary>
-          <p class="ans">Free up to 24 hours before check-in, on every rate. Inside 24 hours, one night is charged. Monsoon bookings move once, free.</p>
-        </details>
-        <details>
-          <summary>Are children and pets welcome?</summary>
-          <p class="ans">Both. Cots are free and under-6s eat free. The pool has a shallow end and a lifeguard from 9am to 6pm. Dogs stay free in the courtyard rooms and villas.</p>
-        </details>
-        <details>
-          <summary>How do we pay, and is there a resort fee?</summary>
-          <p class="ans">No resort fee, no service charge. UPI, all major cards, or cash. Nothing is charged until checkout, and GST is in every price on this page.</p>
-        </details>
-      </div>
+          <section class="faqgroup">
+            <h3 class="faqgroup__h">Check-in and policies</h3>
+            <details open>
+              <summary>What are the check-in and check-out times?</summary>
+              <p class="ans">From 2pm, out by 11am. Arrive early and use the pool and showers while we make the room up. Bags held free either side, and late checkout to 4pm when we can.</p>
+            </details>
+            <details>
+              <summary>What’s the cancellation policy?</summary>
+              <p class="ans">Free up to 24 hours before check-in, on every rate. Inside 24 hours, one night is charged. Monsoon bookings move once, free.</p>
+            </details>
+            <details>
+              <summary>Are children and pets welcome?</summary>
+              <p class="ans">Both. Cots are free and under-6s eat free. Dogs stay free in the courtyard rooms and villas — everywhere except the pool deck and the breakfast room.</p>
+            </details>
+            <details>
+              <summary>How do we pay, and is there a resort fee?</summary>
+              <p class="ans">No resort fee, no service charge. UPI, all major cards, or cash. GST is in every price on this page.</p>
+            </details>
+          </section>
+          <section class="faqgroup">
+            <h3 class="faqgroup__h">Rooms and amenities</h3>
+            <details>
+              <summary>What kinds of rooms are there?</summary>
+              <p class="ans">Thirty-two across four wings — Beachfront, Garden Courtyard, Poolside Villas and Rooftop Lofts — plus six heritage rooms in the Azulejo Wing.</p>
+            </details>
+            <details>
+              <summary>What are the pool and spa hours?</summary>
+              <p class="ans">The pool runs 6am to 10pm, heated through the monsoon, with a shallow end and a lifeguard from 9am to 6pm. Rooftop yoga at 7am is free to every guest.</p>
+            </details>
+            <details>
+              <summary>Is the Wi-Fi good enough to work on?</summary>
+              <p class="ans">300 Mbps fibre with backup power. Three shaded work decks and a meeting room for six.</p>
+            </details>
+            <details>
+              <summary>Is housekeeping daily?</summary>
+              <p class="ans">Daily, with a turndown in the evening. Tell the front desk if you would rather we skipped a day.</p>
+            </details>
+          </section>
+          <section class="faqgroup">
+            <h3 class="faqgroup__h">Parking and transport</h3>
+            <details>
+              <summary>Is the airport transfer really included?</summary>
+              <p class="ans">Yes — one pickup and one drop per booking, from Dabolim or Mopa. Send your flight number 12 hours ahead. Extra trips are ₹1,400 to ₹1,600.</p>
+            </details>
+            <details>
+              <summary>Is there parking?</summary>
+              <p class="ans">Free, on site, for every room. Eight covered bays, open space for the rest, and sheltered parking for two-wheelers by the gate.</p>
+            </details>
+            <details>
+              <summary>Can we hire a scooter or a bike?</summary>
+              <p class="ans">Activas and Royal Enfields at reception, ₹400 a day. Insured, fuelled and helmets included. Bring your licence.</p>
+            </details>
+          </section>
+          <section class="faqgroup">
+            <h3 class="faqgroup__h">Food and drink</h3>
+            <details>
+              <summary>What is breakfast like?</summary>
+              <p class="ans">Cooked to order for every guest, not a buffet. Goan, South Indian and continental, served 7:30am to 10:30am.</p>
+            </details>
+            <details>
+              <summary>Do you serve lunch and dinner?</summary>
+              <p class="ans">Both, plus a poolside menu all day. The Saturday chef’s table seats fourteen under the mango tree — seven courses, and free once per stay.</p>
+            </details>
+            <details>
+              <summary>Can you cater to dietary needs?</summary>
+              <p class="ans">Vegetarian, vegan, Jain, gluten-free and nut allergies, all handled in our own kitchen. Add it to your booking and the chef will plan around it.</p>
+            </details>
+          </section>
+          <section class="faqgroup">
+            <h3 class="faqgroup__h">Local area and attractions</h3>
+            <details>
+              <summary>How far is the beach, honestly?</summary>
+              <p class="ans">Three minutes on foot. 220 metres down a lane, no road to cross. Towels and a cooler by the gate, and loungers held for guests until 4pm.</p>
+            </details>
+            <details>
+              <summary>What is worth seeing nearby?</summary>
+              <p class="ans">Fort Aguada is twelve minutes on foot and the Saturday market eight. Old Goa and the painted streets of Fontainhas are both a short drive.</p>
+            </details>
+            <details>
+              <summary>What can we do from the hotel itself?</summary>
+              <p class="ans">Our own boat, the Maria Bela, leaves the jetty at 5:10pm for dolphins and the Aguada headland. Twelve guests, no other operators.</p>
+            </details>
+          </section>
+        </div>
     </div>
   </section>
 

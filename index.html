@@ -396,13 +396,7 @@ section[id]{scroll-margin-top:88px}
 /* ============================================================
    Why ZO
    ============================================================ */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--radius-lg);overflow:hidden;margin-top:clamp(34px,4vw,50px)}
-@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:var(--surface);padding:clamp(22px,2.4vw,30px);text-align:center}
-.stat__n{font-size:clamp(1.75rem,2.9vw,2.4rem);font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--ink)}
-.stat__n span{font-size:.5em;color:var(--ink-3)}
-.stat__l{display:block;margin-top:10px;font-size:.8rem;color:var(--ink-2);line-height:1.4}
-.whys{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px}
+.whys{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:clamp(30px,3.6vw,46px)}
 @media (max-width:860px){.whys{grid-template-columns:1fr}}
 .why{padding:26px 26px 28px;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--radius);display:flex;flex-direction:column;gap:10px}
 .why__k{font-weight:500;font-size:.66rem;letter-spacing:.02em;color:var(--oxide)}
@@ -1277,13 +1271,6 @@ body.cxl-open{overflow:hidden}
         <p class="lede">The same answers come up in review after review.</p>
       </div>
 
-      <div class="stats rv" id="stats">
-        <div class="stat"><div class="stat__n" data-to="4.9" data-dec="1">4.9</div><span class="stat__l">Average guest rating,<br />across 2,180 reviews</span></div>
-        <div class="stat"><div class="stat__n" data-to="68">68<span>%</span></div><span class="stat__l">of guests book<br />a second stay</span></div>
-        <div class="stat"><div class="stat__n" data-to="3">3<span> min</span></div><span class="stat__l">Walk from reception<br />to Candolim beach</span></div>
-        <div class="stat"><div class="stat__n" data-to="15">15<span> yrs</span></div><span class="stat__l">Run by the same<br />family since 2011</span></div>
-      </div>
-
       <div class="whys">
         <div class="why rv">
           <span class="why__k">Rates</span>
@@ -1929,33 +1916,6 @@ body.cxl-open{overflow:hidden}
       });
     }, { rootMargin: "-72px 0px -70% 0px" });
     targets.forEach(function (t) { if (t) navIo.observe(t); });
-  }
-
-  /* ---- stat count-up ---- */
-  var stats = document.getElementById("stats");
-  if (stats && !reduce && "IntersectionObserver" in window) {
-    var statIo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        statIo.unobserve(en.target);
-        en.target.querySelectorAll(".stat__n").forEach(function (node) {
-          var to = parseFloat(node.getAttribute("data-to"));
-          var dec = parseInt(node.getAttribute("data-dec") || "0", 10);
-          var suffix = node.querySelector("span");
-          var tail = suffix ? suffix.outerHTML : "";
-          var start = null;
-          var step = function (ts) {
-            if (start === null) start = ts;
-            var p = Math.min((ts - start) / 900, 1);
-            var eased = 1 - Math.pow(1 - p, 3);
-            node.innerHTML = (to * eased).toFixed(dec) + tail;
-            if (p < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        });
-      });
-    }, { threshold: 0.4 });
-    statIo.observe(stats);
   }
 
   /* ---- booking ---- */

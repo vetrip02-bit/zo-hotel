@@ -91,6 +91,8 @@ p{margin:0}
 .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
 .wrap--full{max-width:none;padding-inline:clamp(16px,2vw,34px)}
 .section{padding-block:var(--sec)}
+.section--tight{padding-block:clamp(52px,6vw,88px)}
+#keeptrip{padding-top:0}        /* the gallery above already supplies the gap */
 .section--tint{background:var(--ground-2)}
 .stack{display:flex;flex-direction:column}
 section[id]{scroll-margin-top:88px}
@@ -365,14 +367,14 @@ section[id]{scroll-margin-top:88px}
 /* ============================================================
    Features
    ============================================================ */
-.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:clamp(34px,4vw,54px);background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--radius-lg);overflow:hidden}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:clamp(24px,3vw,38px);background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--radius-lg);overflow:hidden}
 @media (max-width:860px){.feats{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.feats{grid-template-columns:1fr}}
 .feat{background:var(--surface);display:flex;flex-direction:column;transition:background-color .25s}
-.feat__photo{width:100%;height:clamp(190px,21vw,300px);object-fit:cover;display:block;background:var(--surface-2)}
-.feat__text{padding:clamp(24px,2.6vw,34px);display:flex;flex-direction:column;gap:12px}
+.feat__photo{width:100%;height:clamp(160px,16vw,228px);object-fit:cover;display:block;background:var(--surface-2)}
+.feat__text{padding:clamp(18px,2vw,26px);display:flex;flex-direction:column;gap:9px}
 .feat:hover{background:var(--clay-soft)}
-.feat__ico{width:26px;height:26px;color:var(--clay)}
+.feat__ico{width:22px;height:22px;color:var(--clay)}
 .feat h3{font-size:1.03rem}
 .feat p{font-size:.885rem;color:var(--ink-2);line-height:1.6}
 
@@ -997,6 +999,7 @@ body.cxl-open{overflow:hidden}
   <section class="section" id="more">
     <div class="wrap">
       <div class="shead shead--center rv">
+        <p class="eyebrow">Around the hotel</p>
         <h2>More to stay for.</h2>
         <div class="shead__line"></div>
         <p class="lede">From slow mornings to sunset moments, there’s still so much to enjoy at ZO.</p>
@@ -1154,7 +1157,7 @@ body.cxl-open{overflow:hidden}
   </section>
 
   <!-- ===== features ===== -->
-  <section class="section">
+  <section class="section section--tight">
     <div class="wrap">
       <div class="shead rv">
         <p class="eyebrow">Stay essentials</p>

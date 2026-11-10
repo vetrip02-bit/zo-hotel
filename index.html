@@ -2545,7 +2545,12 @@ body.cxl-open{overflow:hidden}
       elPanel.appendChild(demo);
 
       elActs.appendChild(btn("Confirm the change", "btn--primary", function () { adj.step = 5; renderAdj(); }));
-      elActs.appendChild(btn("Back", "btn--ghost", function () { adj.step = 3; renderAdj(); }));
+      /* the quiet alternative to adjusting: hand over to the cancellation flow */
+      elActs.appendChild(btn("Cancel booking", "btn--danger", function () {
+        closeDlg(dAdj);
+        document.getElementById("cxlOther").value = "";
+        openDlg(dReasons);
+      }));
       focusPanel();
       return;
     }

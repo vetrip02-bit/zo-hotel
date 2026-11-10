@@ -959,7 +959,7 @@ body.cxl-open{overflow:hidden}
         <h1>Going solo? <em>Your Goa adventure is still on.</em></h1>
         <p class="hero__sub">Switch to a room for one and keep your Goa getaway.</p>
         <div class="hero__btns">
-          <a class="btn btn--primary" href="#book">Book now</a>
+          <button class="btn btn--primary" type="button" data-adjust>Adjust my stay</button>
           <a class="btn btn--ghost" href="#rooms">See the rooms</a>
         </div>
       </div>
@@ -1064,7 +1064,7 @@ body.cxl-open{overflow:hidden}
         <p class="eyebrow">Keep my trip</p>
         <h2>Plans change. Your booking can too.</h2>
         <p class="lede">Travelling solo now? Find a room and price that fit one guest while keeping your Goa dates.</p>
-        <button class="btn btn--primary" type="button" id="adjustStart">Adjust my stay</button>
+        <button class="btn btn--primary" type="button" id="adjustStart" data-adjust>Adjust my stay</button>
       </div>
     </div>
   </section>
@@ -2573,11 +2573,15 @@ body.cxl-open{overflow:hidden}
 
   function adjTotalFor(b) { return (RATES[b.room] || 0) * nightsBetween(b.ci, b.co); }
 
-  var adjTrigger = document.getElementById("adjustStart");
-  adjTrigger.addEventListener("click", function () {
-    adj = { step:1, src:null, guests:1, room:null };
-    openDlg(dAdj);     /* open first: showModal() moves focus, so render after it */
-    renderAdj();
+  var adjTriggers = document.querySelectorAll("[data-adjust]");
+  var adjTrigger = adjTriggers[0];   /* the button that opened the flow, so focus goes back to it */
+  adjTriggers.forEach(function (b) {
+    b.addEventListener("click", function () {
+      adjTrigger = b;
+      adj = { step:1, src:null, guests:1, room:null };
+      openDlg(dAdj);   /* open first: showModal() moves focus, so render after it */
+      renderAdj();
+    });
   });
   document.getElementById("adjClose").addEventListener("click", function () { closeDlg(dAdj); });
   dAdj.addEventListener("click", function (e) { if (e.target === dAdj) closeDlg(dAdj); });
